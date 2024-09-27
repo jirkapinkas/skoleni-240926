@@ -14,3 +14,6 @@
 # nastaveni dashboardu jvm (micrometer):
 # Pridat dashboard (New -> Import) a pridat ID dashboardu 4701 a vybrat datasource Prometheus
 # na adrese: http://localhost:3000/dashboards
+
+# Pro rozchozeni Jaegeru jsem postupoval podle tohoto navodu:
+# https://refactorfirst.com/distributed-tracing-with-opentelemetry-jaeger-in-spring-boot

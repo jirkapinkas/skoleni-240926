@@ -1,4 +1,22 @@
 services:
+  jaeger:
+    image: jaegertracing/all-in-one
+    ports:
+      - "4318:4318"   # Thrift compact over HTTP
+      - "5775:5775"   # Zipkin
+      - "6831:6831/udp"  # Thrift over UDP
+      - "6832:6832/udp"  # Thrift over UDP
+      - "5778:5778"    # HTTP
+      - "14268:14268"  # Collector HTTP
+      - "14250:14250"  # Collector gRPC
+      - "16686:16686"  # Jaeger UI
+      - "16687:16687"  # Agent
+    environment:
+      COLLECTOR_ZIPKIN_HTTP_PORT: 9411
+      COLLECTOR_OTLP_ENABLED: true
+    networks:
+      - monitoring
+
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
