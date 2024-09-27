@@ -17,10 +17,10 @@ scrape_configs:
           job: varlogs
           __path__: /var/log/*log
 
-  - job_name: my-app
+  - job_name: app
     static_configs:
       - targets:
-          - my-app
+          - localhost
         labels:
-          job: my-app-logs
+          job: app-logs
           __path__: /var/log/*log

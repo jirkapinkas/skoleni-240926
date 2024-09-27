@@ -1,0 +1,27 @@
+<configuration>
+
+    <!-- Define the pattern for the console appender (if needed) -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Define the JSON appender to write to /var/log/app.log -->
+    <appender name="JSON_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/var/log/app.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Roll files daily -->
+            <fileNamePattern>/var/log/app.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <maxHistory>30</maxHistory> <!-- Keep logs for 30 days -->
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+    </appender>
+
+    <!-- Root logger settings: INFO level logs will be saved in both JSON file and console -->
+    <root level="INFO">
+        <appender-ref ref="JSON_FILE" />
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</configuration>

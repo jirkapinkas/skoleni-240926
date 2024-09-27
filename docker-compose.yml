@@ -26,10 +26,9 @@ services:
       - monitoring
 
   loki:
-    image: grafana/loki:2.9.1
+    image: grafana/loki:latest
     container_name: loki
     volumes:
-      - loki-storage:/loki
       - ./loki/loki-config.yml:/etc/loki/local-config.yaml
     command: -config.file=/etc/loki/local-config.yaml
     ports:
@@ -55,6 +54,8 @@ services:
   app:
     image: demo-o2-its:latest
     container_name: my-app
+    volumes:
+      - /var/log:/var/log
     ports:
       - "8080:8080"  # Adjust the port according to your app's port
     networks:
