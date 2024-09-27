@@ -2,7 +2,7 @@
 # docker build -t demo-o2-its .
 
 # priklad bez loki
-# docker compose up -f docker-compose-no-loki.yml
+# docker compose -f docker-compose-no-loki.yml up
 
 # priklad + loki
 # docker compose up
